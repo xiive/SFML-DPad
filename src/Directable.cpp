@@ -39,6 +39,14 @@ void Directable::update(const sf::Vector2f& bounds, sf::Time elapsed)
 }
 void Directable::handleEvent(sf::Event event, sf::Time elapsed)
 {
+    if ( !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) )
+    {
+        m_velocity.x = 0.f;
+    }
+    if ( !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) )
+    {
+        m_velocity.y = 0.f;
+    }
     if ( sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) )  ///< Left Arrow Key PRESSED
     {
         m_velocity.x += -1.f * m_acceleration;
@@ -54,22 +62,6 @@ void Directable::handleEvent(sf::Event event, sf::Time elapsed)
     if ( sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) )  ///< Down Arrow Key PRESSED
     {
         m_velocity.y += 1.f * m_acceleration;
-    }
-    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Key::Left)  ///< Left Arrow Key RELEASED
-    {
-        m_velocity.x = 0.f;
-    }
-    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Key::Right) ///< Right Arrow Key RELEASED
-    {
-        m_velocity.x = 0.f;
-    }
-    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Key::Up)    ///< Up Arrow Key RELEASED
-    {
-        m_velocity.y = 0.f;
-    }
-    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Key::Down)  ///< Down Arrow Key RELEASED
-    {
-        m_velocity.y = 0.f;
     }
 }
 void Directable::checkBounds(const sf::Vector2f& bounds, sf::Time elapsed)
